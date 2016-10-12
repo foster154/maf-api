@@ -19,7 +19,7 @@ exports.listProjects = function(req, res, next) {
 
 // This is a paramenter handler that preloads the document if ID is present
 exports.projectSlugParam = function(req, res, next, slug) {
-    Project.find({ slug: slug }, function(err, doc){
+    Project.findOne({ slug: slug }, function(err, doc){
       if (err) return next(err);
       if (!doc) {
         err = new Error("Not Found");
