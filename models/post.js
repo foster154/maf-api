@@ -4,12 +4,14 @@ const Schema = mongoose.Schema;
 const PostSchema = new Schema({
 	date: {type: Date, default: Date.now},
 	title: String,
-  body: String,
 	slug: {
 		type: String,
 		required: true,
 		unique: true
 	},
+	summary: String,
+	coverImage: String,
+	body: String,
 	createdAt: {type: Date, default: Date.now},
 	updatedAt: {type: Date, default: Date.now}
 });

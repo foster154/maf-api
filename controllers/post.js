@@ -12,7 +12,7 @@ exports.createPost = function(req, res, next) {
 }
 
 exports.listPosts = function(req, res, next) {
-  Post.find({})
+  Post.find({}, 'date title slug coverImage summary')
         .exec(function(err, posts){
           if(err) return next(err);
           res.json(posts);
