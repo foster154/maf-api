@@ -4,6 +4,7 @@ const passport = require('passport');
 
 const Post = require('./controllers/post');
 const Project = require('./controllers/project');
+const LearningItem = require('./controllers/learning_item');
 
 // see passport.js => JWT strategy
 const requireAuth = passport.authenticate('jwt', { session: false });
@@ -32,4 +33,11 @@ module.exports = function(app) {
   app.get('/projects/:projectSlug', Project.getProject);
   app.put('/projects/:projectSlug', requireAuth, Project.updateProject);
   app.delete('/projects/:projectSlug', requireAuth, Project.deleteProject);
+  
+  // Learning
+  app.post('/learning', requireAuth, LearningItem.createItem);
+  app.get('/learning', LearningItem.listItems);
+  app.param('itemId', LearningItem.itemIdParam);
+  app.put('/learning/:itemId', requireAuth, LearningItem.updateItem);
+  app.delete('/learning/:itemId', requireAuth, LearningItem.deleteItem);
 }

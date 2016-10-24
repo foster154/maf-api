@@ -36,7 +36,7 @@ exports.listPosts = function(req, res, next) {
 
 // This is a paramenter handler that preloads the invoice document if ID is present
 exports.postSlugParam = function(req, res, next, slug) {
-    Post.find({ slug: slug }, function(err, doc){
+    Post.findOne({ slug: slug }, function(err, doc){
       if (err) return next(err);
       if (!doc) {
         err = new Error("Not Found");
