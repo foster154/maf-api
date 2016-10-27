@@ -1,11 +1,11 @@
 const jwt = require('jwt-simple');
 const User = require('../models/user');
-const config = require('../config');
+require('dotenv').config();
 
 // Used to create a token for a user
 function tokenForUser(user) {
   const timestamp = new Date().getTime();
-  return jwt.encode({ sub: user.id, iat: timestamp }, config.secret);
+  return jwt.encode({ sub: user.id, iat: timestamp }, process.env.SECRET);
 }
 
 exports.signin = function(req, res, next) {
