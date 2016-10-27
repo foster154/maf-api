@@ -14,7 +14,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 // DB Setup
-mongoose.connect('mongodb://localhost:markadamfoster/markadamfoster-dev');
+mongoose.connect(process.env.MONGODB_URI);
 
 // App Setup
 app.use(morgan('combined'));
